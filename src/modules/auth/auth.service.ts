@@ -10,7 +10,6 @@ import { JwtService } from '@nestjs/jwt';
 import { RegisterDto } from './dto/register.dto.';
 import * as bcrypt from 'bcrypt';
 import { LoginDto } from './dto/login.dto';
-import { access } from 'fs';
 @Injectable()
 export class AuthService {
   constructor(
@@ -37,8 +36,8 @@ export class AuthService {
   }
   async LoginDto(dto: LoginDto) {
     const user = await this.userModel.findOne({
-      email: dto.email,
-    });
+      email: dto.email
+    }).select('+password');
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
