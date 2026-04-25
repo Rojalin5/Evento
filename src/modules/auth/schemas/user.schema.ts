@@ -11,11 +11,15 @@ export class User {
   @Prop({ required: true, unique: true })
   email!: string;
 
-  @Prop({ required: true ,select:false})
+  @Prop({ required: true, select: false })
   password!: string;
 
-  @Prop({ default: 'user' })
-  role!: string;
+ @Prop({
+  type: String,
+  enum: ['user', 'admin', 'super_admin'],
+  default: 'user',
+})
+role!: string;
 
   @Prop()
   refreshToken?: string;

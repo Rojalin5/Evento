@@ -16,6 +16,9 @@ constructor(private reflector:Reflector){}
             context.getClass()
         ]
     )
+    if(!requiredRoles){
+        return true;
+    }
     const request = context.switchToHttp().getRequest();
     const user = request.user;
 

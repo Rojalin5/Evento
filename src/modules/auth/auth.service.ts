@@ -28,13 +28,14 @@ export class AuthService {
     const user = await this.userModel.create({
       ...dto,
       password: hashedPassword,
+      role: 'user',
     });
     return {
       message: 'User registered successfully',
       user,
     };
   }
-  async LoginDto(dto: LoginDto) {
+  async Login(dto: LoginDto) {
     const user = await this.userModel.findOne({
       email: dto.email
     }).select('+password');

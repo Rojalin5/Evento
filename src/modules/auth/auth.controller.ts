@@ -16,7 +16,7 @@ export class AuthController {
 
   @Post('login')
   login(@Body() dto: LoginDto) {
-    return this.authService.LoginDto(dto);
+    return this.authService.Login(dto);
   }
   @UseGuards(JwtAuthGuard)
   @Get('profile')
